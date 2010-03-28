@@ -1,0 +1,21 @@
+Dude starts thin, eats things and gets fatter
+Control with 1 button to jump and arrows
+Getting hit reduces fatness, being hit an min fatness results in death
+Being thin means you can get through small (vertical) gaps
+Jumping on enemy kills it
+At maximum fatness you can swallow an enemy
+	- What can you do with this besides throwing them off a cliff?
+		- Maybe that enemy is unkillable otherwise
+	- How do you swallow? Shouldn't need a 2nd button
+In the environment:
+	- Food (just touch to eat)
+	- Enemies
+		- Simple
+		- Infinite spawning (out of a pipe?)
+		- ? Unkillable except by being swallowed and thrown off a cliff
+		- ? Bosses
+	- Spikes
+	- Food pump: reusable, takes you to max fatness
+
+
+
