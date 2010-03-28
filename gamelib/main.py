@@ -8,16 +8,19 @@ package.
 
 import data
 import pygame
+from pygame.font import Font
 import sys
 from constants import *
 
 from engine import Engine
 
 def main():
+    pygame.init()
+
     game_data = {
-        SIZE: (320, 240),
+        SIZE: (640, 480),
+        FONT: Font(None, 32)
     }
 
-    pygame.init()
     engine = Engine(game_data)
     engine.run()

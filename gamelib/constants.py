@@ -1,6 +1,7 @@
 
 constants = """
 SIZE
+FONT
 """.strip()
 
 globs = globals()
