@@ -7,7 +7,17 @@ package.
 '''
 
 import data
+import pygame
+import sys
+from constants import *
+
+from engine import Engine
 
 def main():
-    print "Hello from your game's main()"
-    print data.load('sample.txt').read()
+    game_data = {
+        SIZE: (320, 240),
+    }
+
+    pygame.init()
+    engine = Engine(game_data)
+    engine.run()
