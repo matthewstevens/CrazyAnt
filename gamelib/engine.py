@@ -20,7 +20,7 @@ class MenuContext:
 		self.exit_text_rect.centery = 40
 	def handle_mouse_up_event(self, event):
 		if self.start_text_rect.collidepoint(event.pos):
-			game_context = GameContext(self.engine)
+			self.engine.context = GameContext(self.engine)
 		elif self.exit_text_rect.collidepoint(event.pos):
 			self.engine.running = False
 
