@@ -1,7 +1,10 @@
 
 constants = """
 SIZE
+FILE
 FONT
+LEVELS
+LEVEL_DATA
 """.strip()
 
 globs = globals()
