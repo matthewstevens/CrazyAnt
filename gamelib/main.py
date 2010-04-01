@@ -15,12 +15,12 @@ from constants import *
 from engine import Engine
 
 def main():
-    pygame.init()
+	pygame.init()
 
-    game_data = {
-        SIZE: (640, 480),
-        FONT: Font(None, 32)
-    }
+	game_data = {
+		SIZE: (640, 480),
+		FONT: Font(None, 32)
+	}
 
-    engine = Engine(game_data)
-    engine.run()
+	engine = Engine(game_data)
+	engine.run()
