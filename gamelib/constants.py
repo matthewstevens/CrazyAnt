@@ -12,6 +12,7 @@ BRICK
 TITLE
 LEFT
 RIGHT
+JUMP
 CONTROLS
 """.strip()
 

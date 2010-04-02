@@ -5,7 +5,7 @@ from util import Vector
 gravity = Vector(x=0, y=1)
 left = Vector(x=-2, y = 0)
 right = Vector(x=2, y = 0)
-up = Vector(x=0, y = -2)
+up = Vector(x=0, y = -20)
 down = Vector(x=0, y = 2)
 
 class Player(GameObject):
@@ -34,3 +34,7 @@ class Player(GameObject):
 		self.velocity += right
 	def right_up(self):
 		self.velocity += left
+	def jump_start(self):
+		self.velocity += up
+	def jump_end(self):
+		pass

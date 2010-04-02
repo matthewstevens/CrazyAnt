@@ -12,7 +12,7 @@ import pygame
 from constants import *
 from pygame.font import Font
 import sys
-from pygame.constants import K_a, K_d
+from pygame.constants import K_a, K_d, K_s
 
 from engine import Engine
 
@@ -43,6 +43,7 @@ def main():
 		CONTROLS: {
 			LEFT: K_a,
 			RIGHT: K_d,
+			JUMP: K_s
 		},
 	}
 

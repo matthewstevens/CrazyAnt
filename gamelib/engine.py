@@ -64,10 +64,12 @@ class GameContext:
 		self.down_control_map = {
 			controls[LEFT]: self.level.player.left_down,
 			controls[RIGHT]: self.level.player.right_down,
+			controls[JUMP]: self.level.player.jump_start,
 		}
 		self.up_control_map = {
 			controls[LEFT]: self.level.player.left_up,
 			controls[RIGHT]: self.level.player.right_up,
+			controls[JUMP]: self.level.player.jump_end,
 		}
 		print "Game Created"
 	def handle_mouse_up_event(self, event):
