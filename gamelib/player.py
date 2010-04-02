@@ -13,14 +13,17 @@ class Player(GameObject):
 		super(Player, self).__init__(x*40, y*40, 40, 40)
 		self.velocity = Vector()
 		self.terminal_velocity = 5.0
+		self.airborne = False
 	def update(self, delta):
 		self.velocity += gravity * delta
 		if self.velocity.y > self.terminal_velocity:
 			self.velocity.y = self.terminal_velocity
 		self.velocity.add_to_rect(self.rect)
+		self.airborne = True
 		sprites = pygame.sprite.spritecollide(self, self.level.platforms, dokill=False)
 		if sprites:
 			self.rect.y = sprites[0].rect.y - 40
+			self.airborne = False
 	def is_updatable(self):
 		return True
 	def setup(self, level):
@@ -35,6 +38,8 @@ class Player(GameObject):
 	def right_up(self):
 		self.velocity += left
 	def jump_start(self):
-		self.velocity += up
+		if not self.airborne:
+			self.airborne = True
+			self.velocity += up
 	def jump_end(self):
 		pass
