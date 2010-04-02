@@ -2,16 +2,22 @@
 
 """
 import pygame
+from util import relative_rect
 
 class GameObject(object):
 	def __init__(self, x, y, width, height):
 		self.rect = pygame.Rect(
-			x - (width / 2.0),
-			y - (height / 2.0),
+			x,# - (width / 2.0),
+			y,# - (height / 2.0),
 			width,
 			height
 		)
-	def draw(self, screen):
-		screen.fill((255,255,255), self.rect)
+	def setup(self, level):
+		pass
+	def is_updatable(self):
+		return False
+	def draw(self, screen, camera):
+		rel_rect = relative_rect(self.rect, camera.rect)
+		screen.fill((255,255,255), rel_rect)
 
 

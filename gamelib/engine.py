@@ -45,6 +45,8 @@ class MenuContext:
 	def handle_key_up_event(self, event):
 		if event.key == K_ESCAPE:
 			self.engine.running = False
+	def update(self, delta):
+		pass
 	def display(self):
 		self.engine.screen.blit(self.start_text, self.start_text_rect)
 		self.engine.screen.blit(self.exit_text, self.exit_text_rect)
@@ -57,7 +59,7 @@ class GameContext:
 		self.font = engine.game_data[FONT]
 		self.current_level = 0
 		self.current_level_id = self.engine.game_data[LEVELS][self.current_level]
-		self.level = Level(load(self.engine.game_data[LEVEL_DATA][self.current_level_id][FILE]))
+		self.level = Level(load(self.engine.game_data[LEVEL_DATA][self.current_level_id][FILE]), engine)
 		print "Game Created"
 	def handle_mouse_up_event(self, event):
 		pass
@@ -66,6 +68,8 @@ class GameContext:
 	def handle_key_up_event(self, event):
 		if event.key == K_ESCAPE:
 			self.engine.context = MenuContext(self.engine)
+	def update(self, delta):
+		self.level.update(delta)
 	def display(self):
 		self.level.draw(self.engine.screen)
 
@@ -76,8 +80,10 @@ class Engine:
 		self.running = True
 		self.current_game_context = None
 		self.context = MenuContext(self)
+		self.clock = pygame.time.Clock()
 
 	def run(self):
+		self.clock.tick()
 		while self.running:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -89,7 +95,8 @@ class Engine:
 					self.context.handle_key_up_event(event)
 				elif event.type == MOUSEBUTTONUP:
 					self.context.handle_mouse_up_event(event)
-
+			delta = self.clock.tick()
+			self.context.update(delta)
 			self.screen.fill((0,0,0))
 			self.context.display()
 			pygame.display.flip()

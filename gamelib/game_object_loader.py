@@ -9,8 +9,6 @@ def load(line):
 		name = fields[0]
 		x = int(fields[1])
 		y = int(fields[2])
-		width = int(fields[3])
-		height = int(fields[4])
 
 		if name == PLAYER:
 			obj = Player(x, y)
@@ -18,8 +16,8 @@ def load(line):
 			enemy_type = fields[3]
 			obj = Enemy(x, y, enemy_type)
 		elif name == TILE:
-			tile_type = fields[5]
-			obj = Tile(x, y, width, height, tile_type)
+			tile_type = fields[3]
+			obj = Tile(x, y, tile_type)
 	except IndexError:
 		print "Received index error, level file does not have correct data field"
 		return None
