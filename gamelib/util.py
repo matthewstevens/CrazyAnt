@@ -3,7 +3,7 @@ Helpful stuff that is useful for everyone
 """
 
 import os
-from pygame import Rect
+from pygame import Rect, image
 
 FILE_PATH = os.path.abspath(os.path.dirname(__file__))
 DATA_PATH = os.path.normpath(os.path.join(FILE_PATH, '..', 'data'))
@@ -13,6 +13,14 @@ def file_path(file_name):
 
 def load(file_name):
 	return open(file_path(file_name))
+
+def load_level(file_name):
+	level = image.load(file_path(file_name))
+	for y in range(level.get_height()):
+		for x in range(level.get_width()):
+			colour = level.get_at((x, y))
+			if colour == (0, 0, 0, 0):
+				print colour
 
 def relative_rect(obj, camera):
 	return Rect(obj.x - camera.x, obj.y - camera.y, obj.width, obj.height)

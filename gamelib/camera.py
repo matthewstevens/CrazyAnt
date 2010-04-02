@@ -12,7 +12,15 @@ class Camera:
 		self.level = level
 
 	def update(self, delta):
-		pass
+		if self.level.player.rect.centerx > self.rect.centerx+64:
+			self.rect.centerx = self.level.player.rect.centerx-64
+		if self.level.player.rect.centerx < self.rect.centerx-64:
+			self.rect.centerx = self.level.player.rect.centerx+64
+		if self.level.player.rect.centery > self.rect.centery+128:
+			self.rect.centery = self.level.player.rect.centery-128
+		if self.level.player.rect.centery < self.rect.centery-64:
+			self.rect.centery = self.level.player.rect.centery+64
+		
 
 	def draw(self, surface):
 		for obj in self.level.game_objects:

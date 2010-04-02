@@ -99,6 +99,7 @@ class Engine:
 
 	def run(self):
 		#old_time = pygame.time.get_ticks()
+		count = 0
 		while self.running:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -120,3 +121,7 @@ class Engine:
 			self.screen.fill((0,0,0))
 			self.context.display()
 			pygame.display.flip()
+			count+=1
+			if count > 100:
+				pygame.display.set_caption(str(self.clock.get_fps()))
+				count = 0

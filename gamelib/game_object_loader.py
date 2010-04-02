@@ -2,6 +2,8 @@ from player import Player
 from enemy import Enemy
 from tile import Tile
 from constants import *
+from pygame import image
+from util import file_path
 
 def load(line):
 	fields = line.split()
@@ -27,3 +29,12 @@ def load(line):
 
 	return obj
 
+def load_level(file_name):
+	level = image.load(file_path(file_name))
+	tiles = []
+	for y in range(level.get_height()):
+		for x in range(level.get_width()):
+			colour = level.get_at((x, y))
+			if colour == (0, 0, 0, 0):
+				tiles.append(Tile(x, y, "BRICK"))
+	return tiles

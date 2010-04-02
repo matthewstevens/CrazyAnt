@@ -5,14 +5,14 @@ from util import Vector
 gravity = Vector(x=0, y=1)
 left = Vector(x=-2, y = 0)
 right = Vector(x=2, y = 0)
-up = Vector(x=0, y = -20)
+up = Vector(x=0, y = -30)
 down = Vector(x=0, y = 2)
 
 class Player(GameObject):
 	def __init__(self, x, y):
 		super(Player, self).__init__(x*40, y*40, 40, 40)
 		self.velocity = Vector()
-		self.terminal_velocity = 5.0
+		self.terminal_velocity = 10.0
 		self.airborne = False
 	def update(self, delta):
 		self.velocity += gravity * delta
@@ -22,6 +22,7 @@ class Player(GameObject):
 		self.airborne = True
 		sprites = pygame.sprite.spritecollide(self, self.level.platforms, dokill=False)
 		if sprites:
+			sprite = sprites[0]
 			self.rect.y = sprites[0].rect.y - 40
 			self.airborne = False
 	def is_updatable(self):

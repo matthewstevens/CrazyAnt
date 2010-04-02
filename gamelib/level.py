@@ -13,6 +13,10 @@ class Level:
 		self.updatable_objects = []
 		self.platforms = pygame.sprite.OrderedUpdates()
 		width, height = [int(i) for i in fp.readline().strip().split()]
+		objs = gol.load_level(fp.readline().strip())
+		for obj in objs:
+			obj.setup(self)
+		self.game_objects.extend(objs)
 		for line in fp:
 			line = line.strip()
 			obj = gol.load(line)
