@@ -5,6 +5,10 @@ FILE
 FONT
 LEVELS
 LEVEL_DATA
+PLAYER
+ENEMY
+TILE
+BRICK
 """.strip()
 
 globs = globals()

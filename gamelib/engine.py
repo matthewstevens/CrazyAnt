@@ -5,7 +5,8 @@ import pygame
 from pygame.font import Font
 from pygame.constants import MOUSEBUTTONUP, KEYDOWN, KEYUP, K_ESCAPE
 from constants import *
-import level
+from level import Level
+from util import load
 
 class MenuContext:
 	def __init__(self, engine):
@@ -55,7 +56,8 @@ class GameContext:
 		self.engine = engine
 		self.font = engine.game_data[FONT]
 		self.current_level = 0
-		self.level = 
+		self.current_level_id = self.engine.game_data[LEVELS][self.current_level]
+		self.level = Level(load(self.engine.game_data[LEVEL_DATA][self.current_level_id][FILE]))
 		print "Game Created"
 	def handle_mouse_up_event(self, event):
 		pass
@@ -65,7 +67,7 @@ class GameContext:
 		if event.key == K_ESCAPE:
 			self.engine.context = MenuContext(self.engine)
 	def display(self):
-		pass
+		self.level.draw(self.engine.screen)
 
 class Engine:
 	def __init__(self, game_data):

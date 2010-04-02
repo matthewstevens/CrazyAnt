@@ -9,7 +9,7 @@ class Level:
 			obj = gol.load(line)
 			self.game_objects.append(obj)
 
-	def draw(self):
+	def draw(self, screen):
 		for obj in self.game_objects:
-			obj.draw()
+			obj.draw(screen)
 			

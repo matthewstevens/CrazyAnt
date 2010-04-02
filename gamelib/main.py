@@ -19,23 +19,23 @@ def main():
 
 	game_data = {
 		SIZE: (640, 480),
-		FONT: Font(None, 32)
-        LEVELS: [
-            "level1",
-            "level2",
-            "level3",
-        ],
-        LEVEL_DATA: {
-            "level1": {
-                FILE: "level1.lvl",
-            },
-            "level2": {
-                FILE: "level2.lvl",
-            },
-            "level3": {
-                FILE: "level3.lvl",
-            },
-        }
+		FONT: Font(None, 32),
+		LEVELS: [
+			"level1",
+			"level2",
+			"level3",
+		],
+		LEVEL_DATA: {
+			"level1": {
+				FILE: "level1.lvl",
+			},
+			"level2": {
+				FILE: "level2.lvl",
+			},
+			"level3": {
+				FILE: "level3.lvl",
+			},
+		}
 	}
 
 	engine = Engine(game_data)
