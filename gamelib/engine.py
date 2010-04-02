@@ -3,7 +3,7 @@
 """
 import pygame
 from pygame.font import Font
-from pygame.constants import MOUSEBUTTONUP, KEYDOWN, KEYUP, K_ESCAPE
+from pygame.constants import MOUSEBUTTONUP, KEYDOWN, KEYUP, K_ESCAPE, K_a, K_d
 from constants import *
 from level import Level
 from util import load
@@ -60,14 +60,26 @@ class GameContext:
 		self.current_level = 0
 		self.current_level_id = self.engine.game_data[LEVELS][self.current_level]
 		self.level = Level(load(self.engine.game_data[LEVEL_DATA][self.current_level_id][FILE]), engine)
+		controls = engine.game_data[CONTROLS]
+		self.down_control_map = {
+			controls[LEFT]: self.level.player.left_down,
+			controls[RIGHT]: self.level.player.right_down,
+		}
+		self.up_control_map = {
+			controls[LEFT]: self.level.player.left_up,
+			controls[RIGHT]: self.level.player.right_up,
+		}
 		print "Game Created"
 	def handle_mouse_up_event(self, event):
 		pass
 	def handle_key_down_event(self, event):
-		pass
+		if self.down_control_map.has_key(event.key):
+			self.down_control_map[event.key]()
 	def handle_key_up_event(self, event):
 		if event.key == K_ESCAPE:
 			self.engine.context = MenuContext(self.engine)
+		elif self.down_control_map.has_key(event.key):
+			self.up_control_map[event.key]()
 	def update(self, delta):
 		self.level.update(delta)
 	def display(self):
@@ -77,13 +89,14 @@ class Engine:
 	def __init__(self, game_data):
 		self.game_data = game_data
 		self.screen = pygame.display.set_mode(game_data[SIZE])
+		pygame.display.set_caption(game_data[TITLE])
 		self.running = True
 		self.current_game_context = None
 		self.context = MenuContext(self)
 		self.clock = pygame.time.Clock()
 
 	def run(self):
-		self.clock.tick()
+		#old_time = pygame.time.get_ticks()
 		while self.running:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -95,7 +108,12 @@ class Engine:
 					self.context.handle_key_up_event(event)
 				elif event.type == MOUSEBUTTONUP:
 					self.context.handle_mouse_up_event(event)
-			delta = self.clock.tick()
+			delta = self.clock.tick(60) / 1000.0
+			#now = pygame.time.get_ticks()
+			#print (now - old_time)
+			#delta = (now - old_time) / 1000.0
+			#old_time = now
+			#delta = 0.011
 			self.context.update(delta)
 			self.screen.fill((0,0,0))
 			self.context.display()

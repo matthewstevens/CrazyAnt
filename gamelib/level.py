@@ -1,11 +1,17 @@
+"""
 
+"""
+
+import pygame
 import game_object_loader as gol
 from camera import Camera
 
 class Level:
 	def __init__(self, fp, engine):
+		self.player = None
 		self.game_objects = []
 		self.updatable_objects = []
+		self.platforms = pygame.sprite.OrderedUpdates()
 		width, height = [int(i) for i in fp.readline().strip().split()]
 		for line in fp:
 			line = line.strip()

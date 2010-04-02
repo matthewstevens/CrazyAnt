@@ -9,6 +9,10 @@ PLAYER
 ENEMY
 TILE
 BRICK
+TITLE
+LEFT
+RIGHT
+CONTROLS
 """.strip()
 
 globs = globals()
